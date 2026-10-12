@@ -44,7 +44,7 @@ ansible-playbook -i myhost, -b site.yml   # with roles: [cis_ubuntu]
 
 ansible-lint initially flagged un-prefixed role variables, unnamed tasks and long lines. I fixed all of them and renamed variables to `cis_ubuntu_*`.
 
-**Not run:** the Docker image build and Molecule (no Docker daemon on the box), and applying the role to a real host (I didn't harden my shared lab box). The rootfs test checks file content and permissions but **not** runtime effects such as the kernel actually refusing to load cramfs.
+**Not run:** the Docker image build and Molecule (no Docker daemon on my lab machine), and applying the role to a real host (I didn't harden my shared lab machine). The rootfs test checks file content and permissions but **not** runtime effects such as the kernel actually refusing to load cramfs.
 
 ## Limitations
 - This is a subset. It leaves out partitioning (/tmp noexec), AppArmor, PAM pwquality/faillock, UFW, AIDE, and journald settings.
