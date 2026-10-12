@@ -1,0 +1,19 @@
+PASS  1.1.1.1 cramfs disabled
+PASS  1.1.1.x usb-storage disabled
+PASS  1.5.3 ASLR=2
+PASS  1.5.x suid_dumpable=0
+PASS  3.2.1 ip_forward=0
+PASS  3.3.1 source routing off
+PASS  3.3.2 ICMP redirects off
+PASS  3.3.8 tcp_syncookies=1
+PASS  5.2.1 sshd_config 0600
+PASS  5.2.7 PermitRootLogin no
+PASS  5.2.x PasswordAuthentication no
+PASS  5.2.9 PermitEmptyPasswords no
+PASS  5.2.12 X11Forwarding no
+PASS  5.2.18 MaxAuthTries<=4
+PASS  5.5.1.2 PASS_MAX_DAYS<=365
+PASS  1.7.x /etc/issue.net banner
+PASS  6.1.x /etc/shadow <=0640
+PASS  4.1.3 audit identity rules
+SCORE 18/18

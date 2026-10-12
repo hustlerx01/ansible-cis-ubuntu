@@ -1,0 +1,3 @@
+WARNING  Directory expansion discovered 11 file(s). If this is more than expected, use 'exclude_paths' in your ansible-lint configuration to narrow the scope. See: https://docs.ansible.com/projects/lint/configuring/
+
+Passed: 0 failure(s), 0 warning(s) in 12 files processed of 12 encountered. Last profile that met the validation criteria was 'production'.

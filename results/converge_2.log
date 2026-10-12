@@ -1,0 +1,55 @@
+
+PLAY [localhost] ***************************************************************
+
+TASK [cis_ubuntu : Ensure config dirs exist] ***********************************
+ok: [localhost] => (item=etc/modprobe.d)
+ok: [localhost] => (item=etc/sysctl.d)
+ok: [localhost] => (item=etc/ssh/sshd_config.d)
+ok: [localhost] => (item=etc/security/limits.d)
+ok: [localhost] => (item=etc/audit/rules.d)
+
+TASK [cis_ubuntu : 1.1.1 Disable unused filesystems / 3.5 uncommon protocols] ***
+ok: [localhost]
+
+TASK [cis_ubuntu : 1.5.1 / 3.x Kernel & network sysctls] ***********************
+ok: [localhost]
+
+TASK [cis_ubuntu : 1.5.3 Restrict core dumps] **********************************
+ok: [localhost]
+
+TASK [cis_ubuntu : 5.2.x SSH daemon hardening (drop-in)] ***********************
+ok: [localhost]
+
+TASK [cis_ubuntu : 5.2.x Ensure sshd_config includes drop-ins] *****************
+ok: [localhost]
+
+TASK [cis_ubuntu : 5.2.1 Permissions on sshd_config] ***************************
+ok: [localhost]
+
+TASK [cis_ubuntu : 5.5.1 Password aging in login.defs] *************************
+ok: [localhost] => (item={'k': 'PASS_MAX_DAYS', 'v': 365})
+ok: [localhost] => (item={'k': 'PASS_MIN_DAYS', 'v': 1})
+ok: [localhost] => (item={'k': 'PASS_WARN_AGE', 'v': 7})
+
+TASK [cis_ubuntu : 1.7 Warning banners] ****************************************
+ok: [localhost] => (item=issue)
+ok: [localhost] => (item=issue.net)
+
+TASK [cis_ubuntu : 6.1.x Permissions on critical files (only if present)] ******
+ok: [localhost] => (item={'f': 'passwd', 'm': '0644'})
+ok: [localhost] => (item={'f': 'group', 'm': '0644'})
+ok: [localhost] => (item={'f': 'shadow', 'm': '0640'})
+ok: [localhost] => (item={'f': 'gshadow', 'm': '0640'})
+
+TASK [cis_ubuntu : 6.1.x Fix permissions on present critical files] ************
+ok: [localhost] => (item=passwd)
+skipping: [localhost] => (item=group) 
+ok: [localhost] => (item=shadow)
+skipping: [localhost] => (item=gshadow) 
+
+TASK [cis_ubuntu : 4.1.3 auditd rules (identity, sudoers, time-change)] ********
+ok: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=12   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

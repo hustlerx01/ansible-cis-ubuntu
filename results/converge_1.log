@@ -1,0 +1,61 @@
+
+PLAY [localhost] ***************************************************************
+
+TASK [cis_ubuntu : Ensure config dirs exist] ***********************************
+changed: [localhost] => (item=etc/modprobe.d)
+ok: [localhost] => (item=etc/sysctl.d)
+changed: [localhost] => (item=etc/ssh/sshd_config.d)
+changed: [localhost] => (item=etc/security/limits.d)
+changed: [localhost] => (item=etc/audit/rules.d)
+
+TASK [cis_ubuntu : 1.1.1 Disable unused filesystems / 3.5 uncommon protocols] ***
+changed: [localhost]
+
+TASK [cis_ubuntu : 1.5.1 / 3.x Kernel & network sysctls] ***********************
+changed: [localhost]
+
+TASK [cis_ubuntu : 1.5.3 Restrict core dumps] **********************************
+changed: [localhost]
+
+TASK [cis_ubuntu : 5.2.x SSH daemon hardening (drop-in)] ***********************
+changed: [localhost]
+
+TASK [cis_ubuntu : 5.2.x Ensure sshd_config includes drop-ins] *****************
+changed: [localhost]
+
+TASK [cis_ubuntu : 5.2.1 Permissions on sshd_config] ***************************
+ok: [localhost]
+
+TASK [cis_ubuntu : 5.5.1 Password aging in login.defs] *************************
+changed: [localhost] => (item={'k': 'PASS_MAX_DAYS', 'v': 365})
+changed: [localhost] => (item={'k': 'PASS_MIN_DAYS', 'v': 1})
+ok: [localhost] => (item={'k': 'PASS_WARN_AGE', 'v': 7})
+
+TASK [cis_ubuntu : 1.7 Warning banners] ****************************************
+changed: [localhost] => (item=issue)
+changed: [localhost] => (item=issue.net)
+
+TASK [cis_ubuntu : 6.1.x Permissions on critical files (only if present)] ******
+ok: [localhost] => (item={'f': 'passwd', 'm': '0644'})
+ok: [localhost] => (item={'f': 'group', 'm': '0644'})
+ok: [localhost] => (item={'f': 'shadow', 'm': '0640'})
+ok: [localhost] => (item={'f': 'gshadow', 'm': '0640'})
+
+TASK [cis_ubuntu : 6.1.x Fix permissions on present critical files] ************
+ok: [localhost] => (item=passwd)
+skipping: [localhost] => (item=group) 
+changed: [localhost] => (item=shadow)
+skipping: [localhost] => (item=gshadow) 
+
+TASK [cis_ubuntu : 4.1.3 auditd rules (identity, sudoers, time-change)] ********
+changed: [localhost]
+
+RUNNING HANDLER [cis_ubuntu : Reload sysctl] ***********************************
+skipping: [localhost]
+
+RUNNING HANDLER [cis_ubuntu : Reload sshd] *************************************
+skipping: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=12   changed=10   unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+
