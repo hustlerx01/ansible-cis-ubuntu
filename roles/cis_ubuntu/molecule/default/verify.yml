@@ -1,0 +1,19 @@
+- name: Verify
+  hosts: all
+  become: true
+  tasks:
+    - name: Effective sshd config
+      ansible.builtin.command: sshd -T
+      register: cis_ubuntu_sshd_t
+      changed_when: false
+    - name: Assert hardened sshd
+      ansible.builtin.assert:
+        that:
+          - "'permitrootlogin no' in cis_ubuntu_sshd_t.stdout"
+          - "'passwordauthentication no' in cis_ubuntu_sshd_t.stdout"
+          - "'maxauthtries 4' in cis_ubuntu_sshd_t.stdout"
+    - name: Copy independent audit script
+      ansible.builtin.copy: {src: ../../../../audit/cis_audit.py, dest: /tmp/cis_audit.py, mode: "0755"}
+    - name: Audit must be 100%
+      ansible.builtin.command: python3 /tmp/cis_audit.py /
+      changed_when: false

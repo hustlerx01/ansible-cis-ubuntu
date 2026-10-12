@@ -1,0 +1,5 @@
+- name: Converge
+  hosts: all
+  become: true
+  pre_tasks: [{name: Install sshd, ansible.builtin.apt: {name: [openssh-server, procps], update_cache: true}}]
+  roles: [cis_ubuntu]

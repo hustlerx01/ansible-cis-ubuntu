@@ -1,0 +1,4 @@
+# Managed by Ansible (cis_ubuntu)
+{% for k, v in cis_ubuntu_sshd.items() %}
+{{ k }} {{ v }}
+{% endfor %}

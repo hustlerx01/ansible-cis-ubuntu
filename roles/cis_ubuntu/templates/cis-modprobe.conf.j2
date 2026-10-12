@@ -1,0 +1,5 @@
+# Managed by Ansible (cis_ubuntu)
+{% for m in cis_ubuntu_disable_modules %}
+install {{ m }} /bin/false
+blacklist {{ m }}
+{% endfor %}

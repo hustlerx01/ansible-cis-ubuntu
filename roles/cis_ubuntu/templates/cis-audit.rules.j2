@@ -1,0 +1,8 @@
+# Managed by Ansible (cis_ubuntu)
+-w /etc/passwd -p wa -k identity
+-w /etc/shadow -p wa -k identity
+-w /etc/group -p wa -k identity
+-w /etc/sudoers -p wa -k scope
+-w /etc/sudoers.d/ -p wa -k scope
+-a always,exit -F arch=b64 -S adjtimex,settimeofday,clock_settime -k time-change
+-w /var/log/sudo.log -p wa -k actions
