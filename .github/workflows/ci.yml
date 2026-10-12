@@ -23,3 +23,5 @@ jobs:
         with: {python-version: "3.12"}
       - run: pip install ansible-core "molecule>=24" "molecule-plugins[docker]"
       - run: cd roles/cis_ubuntu && molecule test
+        env:
+          ANSIBLE_ROLES_PATH: ${{ github.workspace }}/roles
